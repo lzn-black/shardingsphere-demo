@@ -1,0 +1,33 @@
+dataSources:
+  ds0: !!com.zaxxer.hikari.HikariDataSource
+    driverClassName: com.mysql.cj.jdbc.Driver
+    jdbcUrl: jdbc:mysql://localhost:3306/ds0?serverTimezone=UTC&useSSL=false&useUnicode=true&characterEncoding=UTF-8
+    username: root
+    password: root
+  ds1: !!com.zaxxer.hikari.HikariDataSource
+    driverClassName: com.mysql.cj.jdbc.Driver
+    jdbcUrl: jdbc:mysql://localhost:3306/ds1?serverTimezone=UTC&useSSL=false&useUnicode=true&characterEncoding=UTF-8
+    username: root
+    password: root
+
+shardingRule:
+  tables:
+    user:
+      actualDataNodes: ds$->{0..1}.user
+    health_record: 
+      actualDataNodes: ds$->{0..1}.health_record
+    health_task:
+      actualDataNodes: ds$->{0..1}.health_task
+  bindingTables:
+    - health_record,health_task
+  broadcastTables:
+    - health_level
+  
+  defaultDatabaseStrategy:
+    hint:
+      algorithmClassName: com.shardingsphere.demo.hint.sharding.MatchHintShardingAlgorithm
+  defaultTableStrategy:
+    none:
+
+props:
+  sql.show: true

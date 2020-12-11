@@ -7,7 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 /**
  * @author lzn
  */
-@MapperScan(basePackages = "com.example.demo.repository")
+@MapperScan(basePackages = "com.shardingsphere.demo.repository")
 @SpringBootApplication
 public class DemoApplication {
     

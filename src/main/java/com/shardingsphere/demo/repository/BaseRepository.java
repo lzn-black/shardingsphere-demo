@@ -20,6 +20,11 @@ package com.shardingsphere.demo.repository;
 import java.sql.SQLException;
 import java.util.List;
 
+/**
+ * BaseRepository
+ *
+ * @author lzn
+ */
 public interface BaseRepository<T, P> {
     
     P addEntity(T entity) throws SQLException;
